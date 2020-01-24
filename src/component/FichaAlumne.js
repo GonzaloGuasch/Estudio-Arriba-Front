@@ -1,19 +1,28 @@
 import React from 'react'
 import "../css/FichaAlumne.css"
-import {asistenciaMes} from '../component/api'
+import {asistenciaMes, pagosMes, sumarAsistenciaMes} from '../component/api'
 
 export default class FichaAlumne extends React.Component{
     constructor(props) {
         super(props);
         this.state = {
             dias: this.props.clase.diasQueSeDicta,
-            pago: false,
             mes: '',
             asistenciaDeMes: '',
             pago: ''
         };
         this.setMes = this.setMes.bind(this);
         this.buscarAsistencia = this.buscarAsistencia.bind(this);
+        this.sumarAsistencia = this.sumarAsistencia.bind(this);
+    }
+    sumarAsistencia(){
+        sumarAsistenciaMes({
+            nombreClase: this.props.clase.nombreClase,
+            nombreAlumne: this.props.alumne.nombreApellido,
+            mesDeAsistencia: this.state.mes
+        }).then(res => this.setState({
+            asistenciaMes: res
+        }))
     }
     buscarAsistencia(){
         asistenciaMes({
@@ -22,6 +31,13 @@ export default class FichaAlumne extends React.Component{
             mesDeAsistencia: this.state.mes
         }).then(res => this.setState({
             asistenciaMes: res
+        }));
+        pagosMes({
+            nombreClase: this.props.clase.nombreClase,
+            nombreAlumne: this.props.alumne.nombreApellido,
+            mesDeAsistencia: this.state.mes
+        }).then(res => this.setState({
+            pago: res.montoPagado
         }))
     }
     setMes(event){
@@ -40,9 +56,12 @@ export default class FichaAlumne extends React.Component{
                     <input type="button" value={"Buscar info"} onClick={this.buscarAsistencia}/>
 
                 </div>
-                <div>Cantidad asistencias de mes: {this.state.asistenciaMes}</div>
+                <div>Cantidad asistencias de mes: {this.state.asistenciaMes}
+                    <input type="button" value={"+"} onClick={this.sumarAsistencia}/>
+                    <input type="button" value={"-"} />
+                </div>
                 <div className="Pago-Container">
-                    Pago:{this.state.pago}
+                    Pago:{this.state.pago} / {this.props.clase.precio}
                 </div>
             </div>
         );
