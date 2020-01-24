@@ -1,0 +1,29 @@
+.Dias-container{
+    padding-right: 20px;
+    margin-top: 20px;
+    display: inline-flex;
+}
+.UnDia-Container{
+    margin-right: 16px;
+}
+.UnButton-Container{
+    margin-right: 60px;
+}
+
+.Ficha-container{
+    margin-top: 32px;
+    margin-left: 35px;
+    margin-right: 900px;
+
+    padding-top: 10px;
+    padding-left: 12px;
+    padding-bottom: 5px;
+
+    border: 1px solid black;
+    border-radius: 12px;
+
+}
+
+.Pago-Container{
+    margin-top: 12px;
+}
