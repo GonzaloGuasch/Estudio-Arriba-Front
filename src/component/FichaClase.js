@@ -7,7 +7,8 @@ export default class FichaClase extends React.Component{
     constructor(props, context) {
         super(props, context);
         this.state = {
-            mes: ''
+            mes: '',
+
         };
         this.setMes = this.setMes.bind(this);
         this.buscarPago = this.buscarPago.bind(this)
@@ -16,7 +17,7 @@ export default class FichaClase extends React.Component{
     buscarPago(){
         pagosAlumne({
             nombreAlumne: "Gonzalo Guasch",
-            nombreClase: "Prueba",
+            nombreClase: "Jazz",
             mesDePago: "Enero"
         }).then(res => console.log(res))
     }
@@ -29,7 +30,8 @@ export default class FichaClase extends React.Component{
     render() {
         return (
             <div className="FichaClase-Container">
-                 {this.props.nombreClase}x
+                 {this.props.nombreClase}
+                {console.log(this.props)}
                 <div>
                     Ver pagos
                 </div>

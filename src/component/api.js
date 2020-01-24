@@ -11,6 +11,7 @@ export const allAlumnes = body => request('get', 'alumne/getTodes');
 export const clasesDeAlumne = body => request('get', 'clase/clasesDeAlumne/' + body.nombreAlumne);
 export const pagosAlumne = body => request('get', 'clase/pagosDeClase' , body);
 
+export const asistenciaMes = body => request('get', 'clase/asistenciasDelMes/' + body.nombreAlumne + '/' + body.nombreClase + '/' + body.mesDeAsistencia);
 
 export const anotarClase = body => request('post', 'clase/anotarse', body);
 export const dejarClase = body => request('post', 'clase/dejarClase', body);

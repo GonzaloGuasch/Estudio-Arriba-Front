@@ -25,7 +25,7 @@ export default class ClasesDeAlumne extends React.Component{
         return(
             <div>
                 <Navbar/>
-                Clases anotados:
+                Clases anotadxs:
 
                 {pagosClases}
             </div>

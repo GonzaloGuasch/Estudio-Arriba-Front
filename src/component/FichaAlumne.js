@@ -1,37 +1,48 @@
 import React from 'react'
 import "../css/FichaAlumne.css"
+import {asistenciaMes} from '../component/api'
 
 export default class FichaAlumne extends React.Component{
     constructor(props) {
         super(props);
         this.state = {
             dias: this.props.clase.diasQueSeDicta,
-            pago: false
-        }
+            pago: false,
+            mes: '',
+            asistenciaDeMes: '',
+            pago: ''
+        };
+        this.setMes = this.setMes.bind(this);
+        this.buscarAsistencia = this.buscarAsistencia.bind(this);
     }
-
+    buscarAsistencia(){
+        asistenciaMes({
+            nombreClase: this.props.clase.nombreClase,
+            nombreAlumne: this.props.alumne.nombreApellido,
+            mesDeAsistencia: this.state.mes
+        }).then(res => this.setState({
+            asistenciaMes: res
+        }))
+    }
+    setMes(event){
+        this.setState({
+            mes: event.target.value
+        })
+    }
     render() {
         return (
             <div className="Ficha-container">
                 <div>
                     {this.props.alumne.nombreApellido}
-                    {console.log(this.props.clase.diasQueSeDicta)}
                 </div>
                 <div className="Dias-container">
-                    <div className="UnDia-Container">{this.state.dias} 1</div>
-                    <div className="UnDia-Container">{this.state.dias} 2</div>
-                    <div className="UnDia-Container">{this.state.dias} 3</div>
-                    <div>{this.state.dias} 4</div>
+                    <input type="text" placeholder={"Info de mes"} onChange={this.setMes} value={this.state.mes}/>
+                    <input type="button" value={"Buscar info"} onClick={this.buscarAsistencia}/>
+
                 </div>
-                <div className="Dias-container">
-                    <input type="radio" className="UnButton-Container"/>
-                    <input type="radio" className="UnButton-Container"/>
-                    <input type="radio" className="UnButton-Container"/>
-                    <input type="radio" className="UnButton-Container"/>
-                    100%
-                </div>
+                <div>Cantidad asistencias de mes: {this.state.asistenciaMes}</div>
                 <div className="Pago-Container">
-                    Pago: Si
+                    Pago:{this.state.pago}
                 </div>
             </div>
         );
