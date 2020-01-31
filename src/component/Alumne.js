@@ -8,9 +8,7 @@ export default class Alumne extends React.Component{
         this.mostrarClases = this.mostrarClases.bind(this)
     }
     mostrarClases(){
-        //this.props.history.push("/ClasesAlumne")
-        this.props.history.push("/ClasesAlumne", {...this.props.data})
-        console.log(this.props)
+        this.props.history.push("/ClasesAlumne", {...this.props.data});
     }
 
     render() {
@@ -18,19 +16,7 @@ export default class Alumne extends React.Component{
             <Fragment>
                 <div className="Alumne-container">
                     <div>
-                       Nombre: {this.props.data.nombreApellido}
-                    </div>
-                    <div>
-                       Direccion: {this.props.data.direccion}
-                    </div>
-                    <div>
-                        Fecha nacimiento: {this.props.data.fecha_nacimiento}
-                    </div>
-                    <div>
-                        Telefono fijo: {this.props.data.telefonoFijo}
-                    </div>
-                    <div>
-                        <input type="button" value="Ver clases anotadx" onClick={this.mostrarClases}/>
+                        <input type="button" value={this.props.data.nombreApellido} onClick={this.mostrarClases}/>
                     </div>
                 </div>
             </Fragment>

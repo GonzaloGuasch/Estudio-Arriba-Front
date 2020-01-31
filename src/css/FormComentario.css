@@ -1,0 +1,39 @@
+.form-container{
+    margin-left: 40%;
+    margin-right: 28%;
+
+    border: 2px solid black;
+
+    padding-top: 12px;
+    padding-left: 12px;
+    padding-right: 12px;
+}
+
+.enviar-button{
+    background-color: white;
+    margin-bottom: 12px;
+    margin-left: 60px;
+    margin-right: 5px;
+    border: 1px solid black;
+}
+.enviar-button:hover{
+    background-color: #3e8e41;
+    color:white;
+}
+
+.borrar-button{
+    background-color: white;
+    border: 1px solid black;
+}
+.borrar-button:hover{
+    background-color:  #cf2d0b;
+    color:white
+}
+
+.comentario-container{
+    margin-left: 83px;
+}
+
+.enviar-button:hover{
+    background-color: #3e8e41
+}

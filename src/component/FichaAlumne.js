@@ -9,22 +9,39 @@ export default class FichaAlumne extends React.Component{
             dias: this.props.clase.diasQueSeDicta,
             mes: '',
             asistenciaDeMes: '',
-            pago: ''
+            fechaAsistencia: '',
+            pago: '',
+            error: ''
         };
         this.setMes = this.setMes.bind(this);
         this.buscarAsistencia = this.buscarAsistencia.bind(this);
+        this.setearFecha = this.setearFecha.bind(this);
         this.sumarAsistencia = this.sumarAsistencia.bind(this);
     }
+
+    setearFecha(event){
+        this.setState({
+            fechaAsistencia: event.target.value
+        })
+    }
     sumarAsistencia(){
+        this.setState({
+            error: ''
+        })
         sumarAsistenciaMes({
             nombreClase: this.props.clase.nombreClase,
             nombreAlumne: this.props.alumne.nombreApellido,
-            mesDeAsistencia: this.state.mes
-        }).then(res => this.setState({
+            mesDeAsistencia: this.state.mes,
+            fecha: this.state.fechaAsistencia
+        }).catch(e => this.setState({error: 'ya asistio a todas las clases del mes'}))
+            .then(res => this.setState({
             asistenciaMes: res
         }))
     }
     buscarAsistencia(){
+        this.setState({
+            error: ''
+        })
         asistenciaMes({
             nombreClase: this.props.clase.nombreClase,
             nombreAlumne: this.props.alumne.nombreApellido,
@@ -49,7 +66,7 @@ export default class FichaAlumne extends React.Component{
         return (
             <div className="Ficha-container">
                 <div>
-                    {this.props.alumne.nombreApellido}
+                    <a href="asd">{this.props.alumne.nombreApellido}</a>
                 </div>
                 <div className="Dias-container">
                     <input type="text" placeholder={"Info de mes"} onChange={this.setMes} value={this.state.mes}/>
@@ -57,8 +74,13 @@ export default class FichaAlumne extends React.Component{
 
                 </div>
                 <div>Cantidad asistencias de mes: {this.state.asistenciaMes}
-                    <input type="button" value={"+"} onClick={this.sumarAsistencia}/>
-                    <input type="button" value={"-"} />
+                    <div> Registrar asistencia:
+                    <input type="date" onChange = {this.setearFecha} value={this.state.fechaAsistencia}/>
+                        <input type="button" value={"Registrar"} onClick={this.sumarAsistencia}/>
+                    </div>
+                    <div>
+                        {this.state.error}
+                    </div>
                 </div>
                 <div className="Pago-Container">
                     Pago:{this.state.pago} / {this.props.clase.precio}

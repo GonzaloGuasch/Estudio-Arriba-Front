@@ -1,0 +1,14 @@
+.card-container{
+    margin-left: 40%;
+    margin-right: 28%;
+    margin-bottom: 12px;
+
+    border-radius: 1px;
+    border: 1px solid black;
+}
+
+.info-container{
+    padding-left: 12%;
+    padding-top: 15px;
+    padding-bottom: 12px;
+}

@@ -11,9 +11,14 @@ export const allAlumnes = body => request('get', 'alumne/getTodes');
 export const clasesDeAlumne = body => request('get', 'clase/clasesDeAlumne/' + body.nombreAlumne);
 export const pagosAlumne = body => request('get', 'clase/pagosDeClase' , body);
 
+export const fechaAsistenciaMes = body => request('get', 'clase/fechaAsistencia/' + body.nombreAlumne + '/' + body.nombreClase + '/' + body.mesDeAsistencia);
 export const asistenciaMes = body => request('get', 'clase/asistenciasDelMes/' + body.nombreAlumne + '/' + body.nombreClase + '/' + body.mesDeAsistencia);
 export const pagosMes = body => request('get', 'clase/pagosDeClase/' + body.nombreAlumne + '/' + body.nombreClase + '/' + body.mesDeAsistencia);
 export const sumarAsistenciaMes = body => request('post', 'clase/registrarAsistencia', body);
+export const registrarPAgo = body => request('post', 'clase/registrarPago', body);
+
+export const getAllComents = body => request('get', 'alumne/todosLosComentarios/' + body.nombreAlumne);
+export const saveComent = body => request('post', 'alumne/guardarComentario', body);
 
 export const anotarClase = body => request('post', 'clase/anotarse', body);
 export const dejarClase = body => request('post', 'clase/dejarClase', body);
